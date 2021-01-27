@@ -24,8 +24,8 @@ public class TesteConfig implements CommandLineRunner {
 //	tudo que estiver dentro do metodo run vai ser executado quando a aplicação for iniciada
 	public void run(String... args) throws Exception {
 		
-		Usuario u1 = new Usuario(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
-		Usuario u2 = new Usuario(null, "Alex Green", "alex@gmail.com", "977777777", "123456"); 
+		Usuario u1 = new Usuario(null, "Maria Brown", "maria@gmail.com", "123", "111111111");
+		Usuario u2 = new Usuario(null, "Alex Green", "alex@gmail.com", "456", "22222222"); 
 
 		userRepository.saveAll(Arrays.asList(u1, u2));
 	}
