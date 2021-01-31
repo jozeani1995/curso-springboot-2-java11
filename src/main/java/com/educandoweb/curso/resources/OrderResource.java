@@ -9,32 +9,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.educandoweb.curso.entities.Usuario;
-import com.educandoweb.curso.services.UsuarioService;
+import com.educandoweb.curso.entities.Order;
+import com.educandoweb.curso.services.OrderService;
 
 @RestController
-@RequestMapping(value = "/usuarios")
+@RequestMapping(value = "/order")
 // caminho do recurso
-public class UsuarioResource {
+public class OrderResource {
 
 	@Autowired
-	private UsuarioService service;
+	private OrderService service;
 
 	@GetMapping
 //	responseEntity = respostas de requisições web
-	public ResponseEntity<List<Usuario>> buscarTodos() {
-		List<Usuario> list = service.buscarTodos();
+	public ResponseEntity<List<Order>> buscarTodos() {
+		List<Order> list = service.buscarTodos();
 //chamando a camada serviço (service/ para se usar o service e so colocar uma injecao de dependencia) na operacao do findAll
 		return ResponseEntity.ok().body(list);
-		//ok = resposta positiva 
-		//body = mostrar o corpo instanciado do usuario com os dados
+//ok = resposta positiva 
+//body = mostrar o corpo instanciado do usuario com os dados
 	}
 
 	@GetMapping(value = "/{id}")
 //	indica que a requisicao aceita um id dentro da url
-	public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) {
+	public ResponseEntity<Order> buscarPorId(@PathVariable Long id) {
 //	para eu conseguir que o spring aceite uma url na requisicao usamos o pathvariable
-		Usuario obj = service.buscarPorId(id);
+		Order obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
 
 	}
