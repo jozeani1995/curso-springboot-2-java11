@@ -25,6 +25,7 @@ public enum OrderStatusEnum {
 				return value; 
 			}
 		}
-		throw new IllegalArgumentException("CODIGO INAVALIDO ORDERSTATUSENUM");
+//		excessao para codigo invalido
+		throw new IllegalArgumentException("CODIGO INVALIDO ORDERSTATUSENUM");
 	}
 }
