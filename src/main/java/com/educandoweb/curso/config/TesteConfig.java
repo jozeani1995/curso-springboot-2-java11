@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.educandoweb.curso.entities.Category;
 import com.educandoweb.curso.entities.Order;
+import com.educandoweb.curso.entities.Produtos;
 import com.educandoweb.curso.entities.Usuario;
 import com.educandoweb.curso.entities.enums.OrderStatusEnum;
 import com.educandoweb.curso.repositories.CategoryRepository;
 import com.educandoweb.curso.repositories.OrderRepository;
+import com.educandoweb.curso.repositories.ProdutosRepository;
 import com.educandoweb.curso.repositories.UsuarioRepository;
 
 // indica que este é uma classe de configuração @Configuration
@@ -32,6 +34,9 @@ public class TesteConfig implements CommandLineRunner {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	@Autowired
+	private ProdutosRepository produtosRepository;
+
 	@Override
 //	tudo que estiver dentro do metodo run vai ser executado quando a aplicação for iniciada
 	public void run(String... args) throws Exception {
@@ -40,7 +45,14 @@ public class TesteConfig implements CommandLineRunner {
 		Category cat2 = new Category(null, "Books");
 		Category cat3 = new Category(null, "Computers");
 
+		Produtos p1 = new Produtos(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+		Produtos p2 = new Produtos(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+		Produtos p3 = new Produtos(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+		Produtos p4 = new Produtos(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+		Produtos p5 = new Produtos(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		produtosRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
 		Usuario u1 = new Usuario(null, "Maria Brown", "maria@gmail.com", "123", "111111111");
 		Usuario u2 = new Usuario(null, "Alex Green", "alex@gmail.com", "456", "22222222");
