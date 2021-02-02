@@ -2,6 +2,8 @@ package com.educandoweb.curso.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.educandoweb.curso.entities.enums.OrderStatusEnum;
@@ -33,6 +36,9 @@ public class Order implements Serializable {
 //	joincolumn quer dizer que na tabela de pedidos do BD vou ter uma chave estrangeira chamada 
 //	usuario_id que ira conter o id do usuario associado ao pedido
 	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> items = new HashSet<>();
 
 	public Order() {
 	}
@@ -78,7 +84,12 @@ public class Order implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+// meu pedido conhecer o pedido dele
+	public Set<OrderItem> getItems() {
+		return items;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

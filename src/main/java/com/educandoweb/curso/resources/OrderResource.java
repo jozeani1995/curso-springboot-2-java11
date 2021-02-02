@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.educandoweb.curso.entities.Order;
+import com.educandoweb.curso.entities.dto.OrderDTO;
 import com.educandoweb.curso.services.OrderService;
 
 @RestController
@@ -32,11 +33,10 @@ public class OrderResource {
 
 	@GetMapping(value = "/{id}")
 //	indica que a requisicao aceita um id dentro da url
-	public ResponseEntity<Order> buscarPorId(@PathVariable Long id) {
+	public ResponseEntity<OrderDTO> buscarPorId(@PathVariable Long id) {
 //	para eu conseguir que o spring aceite uma url na requisicao usamos o pathvariable
-		Order obj = service.buscarPorId(id);
+		OrderDTO obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
-
 	}
 
 }

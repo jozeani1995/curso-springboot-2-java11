@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.educandoweb.curso.entities.Category;
 import com.educandoweb.curso.entities.Order;
+import com.educandoweb.curso.entities.OrderItem;
 import com.educandoweb.curso.entities.Produtos;
 import com.educandoweb.curso.entities.Usuario;
 import com.educandoweb.curso.entities.enums.OrderStatusEnum;
 import com.educandoweb.curso.repositories.CategoryRepository;
+import com.educandoweb.curso.repositories.OrderItemRepository;
 import com.educandoweb.curso.repositories.OrderRepository;
 import com.educandoweb.curso.repositories.ProdutosRepository;
 import com.educandoweb.curso.repositories.UsuarioRepository;
@@ -36,6 +38,9 @@ public class TesteConfig implements CommandLineRunner {
 
 	@Autowired
 	private ProdutosRepository produtosRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	@Override
 //	tudo que estiver dentro do metodo run vai ser executado quando a aplicação for iniciada
@@ -64,7 +69,7 @@ public class TesteConfig implements CommandLineRunner {
 		p4.getCategorias().add(cat3);
 		p5.getCategorias().add(cat2);
 		
-//		salvar no banco paradgma relacional
+//		salvar no banco de dados:
 		produtosRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
 		Usuario u1 = new Usuario(null, "Maria Brown", "maria@gmail.com", "123", "111111111");
@@ -77,6 +82,16 @@ public class TesteConfig implements CommandLineRunner {
 //		mandar salvar no banco de dados:
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+//		  item de pedido =(pedido, produto, quantidade, preco(reproduzindo o preco do p1, p2 etc..)  
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+//		salvar no banco
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
+		
 
 	}
 
