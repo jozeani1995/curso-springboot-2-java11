@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.educandoweb.curso.entities.Produtos;
+import com.educandoweb.curso.entities.dto.ProdutoDTO;
 import com.educandoweb.curso.services.ProdutosService;
 
 @RestController
@@ -22,8 +23,8 @@ public class ProdutosResource {
 
 	@GetMapping
 //	responseEntity = respostas de requisições web
-	public ResponseEntity<List<Produtos>> buscarTodos() {
-		List<Produtos> list = service.buscarTodos();
+	public ResponseEntity<List<ProdutoDTO>> buscarTodos() {
+		List<ProdutoDTO> list = service.buscarTodos();
 //chamando a camada serviço (service/ para se usar o service e so colocar uma injecao de dependencia) na operacao do findAll
 		return ResponseEntity.ok().body(list);
 		//ok = resposta positiva 

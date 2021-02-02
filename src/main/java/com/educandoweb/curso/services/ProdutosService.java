@@ -2,11 +2,14 @@ package com.educandoweb.curso.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.educandoweb.curso.entities.Produtos;
+import com.educandoweb.curso.entities.dto.ProdutoDTO;
 import com.educandoweb.curso.repositories.ProdutosRepository;
 
 @Service
@@ -14,14 +17,19 @@ import com.educandoweb.curso.repositories.ProdutosRepository;
 public class ProdutosService {
 
 	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Autowired
 //  essa anotacao serve para o spring faca a injeção de dependencia de forma transparente
 	private ProdutosRepository repository;
 //	declaração de dependencia
 
 //  metodo que retorna todos os usuarios do banco de dados
 //  REPASSANDO A CHAMADA PARA MEU REPOSITORY
-	public List<Produtos> buscarTodos() {
-		return repository.findAll();
+	public List<ProdutoDTO> buscarTodos() {
+		List<Produtos> produtos = repository.findAll();
+		List<ProdutoDTO> dtos = produtos.stream().map(produto -> modelMapper.map(produto, ProdutoDTO.class)).collect(Collectors.toList());
+		return dtos;
 	}
 
 	public Produtos buscarPorId(Long id) {

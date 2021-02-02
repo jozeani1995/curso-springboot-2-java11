@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_produtos")
@@ -27,7 +29,12 @@ public class Produtos implements Serializable {
 // o set representa um conjunto	isso garante que eu não vou ter 
 //	mais de um produto com + de uma ocorrencia de mesma categoria
 //	o mesmo produto nao pode ter mais de uma categoria
-	@Transient
+	@ManyToMany
+	@JoinTable(name = "tb_produtos_categoria",
+	joinColumns = @JoinColumn(name = "produto_id"),
+	inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+//	no JoinTable vai falar qual vai ser o nome da tabela e quais vao ser 
+//	as chaves estrangeiras que vai associar a tabela de produto com a tabela categoria
 	private Set<Category> categorias = new HashSet<>();
 
 	public Produtos() {

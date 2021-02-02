@@ -30,6 +30,8 @@ public class Order implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
+//	joincolumn quer dizer que na tabela de pedidos do BD vou ter uma chave estrangeira chamada 
+//	usuario_id que ira conter o id do usuario associado ao pedido
 	private Usuario usuario;
 
 	public Order() {
