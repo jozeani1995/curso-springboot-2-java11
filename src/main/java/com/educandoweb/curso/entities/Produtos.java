@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,6 +38,11 @@ public class Produtos implements Serializable {
 //	as chaves estrangeiras que vai associar a tabela de produto com a tabela categoria
 	private Set<Category> categorias = new HashSet<>();
 
+//	nomes relacionados a classe orderItemprimarykey
+//	declarando uma colecao de itens
+	@OneToMany(mappedBy = "id.produtos")
+	private Set<OrderItem> items = new HashSet<>();
+	
 	public Produtos() {
 	}
 
@@ -93,6 +99,15 @@ public class Produtos implements Serializable {
 		return categorias;
 	}
 
+	public Set<Order> getOrders() {
+		Set<Order> set = new HashSet<>();
+		for (OrderItem x : items) {
+			set.add(x.getOrder());
+		}
+		return set;	
+//			: = lista
+//		-> estou percurrendo a colecao items do tipo order item associada ao meu produto
+	}	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
