@@ -33,9 +33,9 @@ public class ProdutosResource {
 
 	@GetMapping(value = "/{id}")
 //	indica que a requisicao aceita um id dentro da url
-	public ResponseEntity<Produtos> buscarPorId(@PathVariable Long id) {
+	public ResponseEntity<ProdutoDTO> buscarPorId(@PathVariable Long id) {
 //	para eu conseguir que o spring aceite uma url na requisicao usamos o pathvariable
-		Produtos obj = service.buscarPorId(id);
+		ProdutoDTO obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
 
 	}

@@ -2,13 +2,16 @@ package com.educandoweb.curso.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.educandoweb.curso.entities.Order;
+import com.educandoweb.curso.entities.Produtos;
 import com.educandoweb.curso.entities.dto.OrderDTO;
+import com.educandoweb.curso.entities.dto.ProdutoDTO;
 import com.educandoweb.curso.repositories.OrderRepository;
 
 @Service
@@ -25,8 +28,10 @@ public class OrderService {
 
 //  metodo que retorna todos os orders do banco de dados
 //  REPASSANDO A CHAMADA PARA MEU REPOSITORY
-	public List<Order> buscarTodos() {
-		return repository.findAll();
+	public List<OrderDTO> buscarTodos() {
+		List<Order> orders = repository.findAll();
+		List<OrderDTO> dtos = orders.stream().map(order -> modelMapper.map(order, OrderDTO.class)).collect(Collectors.toList());
+		return dtos;
 	}
 
 	public OrderDTO buscarPorId(Long id) {

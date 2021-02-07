@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.educandoweb.curso.entities.Produtos;
+import com.educandoweb.curso.entities.dto.OrderDTO;
 import com.educandoweb.curso.entities.dto.ProdutoDTO;
 import com.educandoweb.curso.repositories.ProdutosRepository;
 
@@ -32,9 +33,10 @@ public class ProdutosService {
 		return dtos;
 	}
 
-	public Produtos buscarPorId(Long id) {
+	public ProdutoDTO buscarPorId(Long id) {
 		Optional<Produtos> obj = repository.findById(id);
-		return obj.get();
+		ProdutoDTO produto = modelMapper.map(obj.get(), ProdutoDTO.class);
+		return produto;
 //  o get do optional vai retornar o objeto do tipo usuario que estiver dentro do optional
 	}
 }

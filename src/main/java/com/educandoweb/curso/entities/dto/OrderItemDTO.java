@@ -6,13 +6,12 @@ public class OrderItemDTO {
 
 	private Integer quantidade;
 	private Double preco;
-	
 	private List<ProdutoDTO> produto;
 	
 	private OrderItemDTO() {
 	}
 
-	public OrderItemDTO(Integer quantidade, Double preco, List<ProdutoDTO> items) {
+	public OrderItemDTO(Integer quantidade, Double preco, List<ProdutoDTO> items) { 
 		super();
 		this.quantidade = quantidade;
 		this.preco = preco;

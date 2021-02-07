@@ -14,12 +14,13 @@ public class OrderDTO {
 	private OrderDTO() {
 	}
 
-	public OrderDTO(Long id, Instant moment, String orderStatusEnum, UsuarioDTO usuario) {
+	public OrderDTO(Long id, Instant moment, String orderStatusEnum, UsuarioDTO usuario, List<OrderItemDTO> items) {
 		super();
 		this.id = id;
 		this.moment = moment;
 		this.orderStatusEnum = orderStatusEnum;
 		this.usuario = usuario;
+		this.items = items; 
 	}
 
 	public Long getId() {

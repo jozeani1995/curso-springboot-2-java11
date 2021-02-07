@@ -23,8 +23,8 @@ public class OrderResource {
 
 	@GetMapping
 //	responseEntity = respostas de requisições web
-	public ResponseEntity<List<Order>> buscarTodos() {
-		List<Order> list = service.buscarTodos();
+	public ResponseEntity<List<OrderDTO>> buscarTodos() {
+		List<OrderDTO> list = service.buscarTodos();
 //chamando a camada serviço (service/ para se usar o service e so colocar uma injecao de dependencia) na operacao do findAll
 		return ResponseEntity.ok().body(list);
 //ok = resposta positiva 
