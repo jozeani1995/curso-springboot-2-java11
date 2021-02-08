@@ -24,7 +24,7 @@ public class Produtos implements Serializable {
 	private Long id;
 	private String nome;
 	private String descrição;
-	private Double price;
+	private Double preco;
 	private String imgUrl;
 
 // o set representa um conjunto	isso garante que eu não vou ter 
@@ -46,12 +46,12 @@ public class Produtos implements Serializable {
 	public Produtos() {
 	}
 
-	public Produtos(Long id, String nome, String descrição, Double price, String imgUrl) {
+	public Produtos(Long id, String nome, String descrição, Double preco, String imgUrl) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.descrição = descrição;
-		this.price = price;
+		this.preco = preco;
 		this.imgUrl = imgUrl;
 	}
 
@@ -79,12 +79,12 @@ public class Produtos implements Serializable {
 		this.descrição = descrição;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setPreco(Double preco) {
+		this.preco = preco;
 	}
 
 	public String getImgUrl() {

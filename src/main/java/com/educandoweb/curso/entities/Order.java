@@ -34,7 +34,7 @@ public class Order implements Serializable {
 	
 	private Integer orderStatusEnum;
 
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name = "usuario_id")
 //	joincolumn quer dizer que na tabela de pedidos do BD vou ter uma chave estrangeira chamada 
 //	usuario_id que ira conter o id do usuario associado ao pedido
@@ -104,7 +104,15 @@ public class Order implements Serializable {
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
-
+// ==> metodo para fazer uma soma de dois subtotais para gerar um total
+	 public Double getTotal() {
+		 double sum = 0.0;
+		 for (OrderItem x : items) {
+			 sum += x.getsubTotal();
+		 }
+		 return sum;
+	 }
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

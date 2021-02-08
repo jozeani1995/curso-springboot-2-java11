@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.educandoweb.curso.entities.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "td_pagamento")
 public class Pagamento implements Serializable {
@@ -23,6 +24,7 @@ public class Pagamento implements Serializable {
 	private Long id;
 	private Instant moment;
 	
+	@JsonIgnore
 	@OneToOne
 	@MapsId
 	private Order order;

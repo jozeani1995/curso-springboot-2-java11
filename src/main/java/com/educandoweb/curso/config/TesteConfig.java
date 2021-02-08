@@ -63,7 +63,7 @@ public class TesteConfig implements CommandLineRunner {
 		
 //		qual categoria pertence a um determinado produto
 //		fazendo uma ssociacao entre objetos
-		p1.getCategorias().add(cat2);
+		p1.getCategorias().add(cat2); 
 		p2.getCategorias().add(cat1);
 		p2.getCategorias().add(cat3);
 		p3.getCategorias().add(cat3);
@@ -85,10 +85,10 @@ public class TesteConfig implements CommandLineRunner {
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 
 //		  item de pedido =(pedido, produto, quantidade, preco(reproduzindo o preco do p1, p2 etc..)  
-		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
-		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
-		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
-		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPreco());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPreco());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPreco());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPreco());
 //		salvar no banco
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 		
