@@ -19,11 +19,12 @@ import com.educandoweb.curso.repositories.OrderItemRepository;
 import com.educandoweb.curso.repositories.OrderRepository;
 import com.educandoweb.curso.repositories.ProdutosRepository;
 import com.educandoweb.curso.repositories.UsuarioRepository;
+import com.educandoweb.curso.services.Pagamento;
 
 // indica que este é uma classe de configuração @Configuration
 @Configuration
 @Profile("teste")
-// pra especificar que esta classe é especifica para o perfil de teste 
+// para especificar que esta classe é especifica para o perfil de teste 
 public class TesteConfig implements CommandLineRunner {
 
 	@Autowired
@@ -56,7 +57,7 @@ public class TesteConfig implements CommandLineRunner {
 		Produtos p4 = new Produtos(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
 		Produtos p5 = new Produtos(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 		
-// salvar no banco de dados
+//      salvar no banco de dados
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		produtosRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		
@@ -91,6 +92,13 @@ public class TesteConfig implements CommandLineRunner {
 //		salvar no banco
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 		
+//		==> dados(Long id, Instant moment, Order order)
+		Pagamento pag1 = new Pagamento(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+		
+//		==> salvamento de um objeto dependente com uma relacao OneToOne
+		o1.setPagamento(pag1);
+		
+		orderRepository.save(o1);
 		
 
 	}

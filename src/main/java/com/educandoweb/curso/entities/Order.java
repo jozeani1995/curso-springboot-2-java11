@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.educandoweb.curso.entities.enums.OrderStatusEnum;
+import com.educandoweb.curso.services.Pagamento;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -40,6 +43,10 @@ public class Order implements Serializable {
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
  
+//	--> usar o cascade em caso de OneToOne para assim mapear a duas entidades para ter o mesmo id
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+	private Pagamento pagamento;
+	
 	public Order() {
 	}
 
@@ -84,12 +91,20 @@ public class Order implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+//	--> items
 // meu pedido conhecer o pedido dele
 	public Set<OrderItem> getItems() {
 		return items;
 	}
-	
-	
+// --> pagamento	
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
