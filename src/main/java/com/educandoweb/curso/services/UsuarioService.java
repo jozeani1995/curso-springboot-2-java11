@@ -33,6 +33,11 @@ public class UsuarioService {
 //	==> inserir um usuario no banco de dados / resource
 	public Usuario insert(Usuario obj) {
 		return repository.save(obj);
-		
 	}
+	
+//	==> deletar usuario por id
+	public void delete (Long id) {
+		repository.deleteById(id);
+//		==> resolucao basica
+	} 
 }
