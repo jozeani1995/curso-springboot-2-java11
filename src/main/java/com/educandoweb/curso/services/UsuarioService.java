@@ -38,6 +38,20 @@ public class UsuarioService {
 //	==> deletar usuario por id
 	public void delete (Long id) {
 		repository.deleteById(id);
-//		==> resolucao basica
+//	==> resolucao basica
 	} 
+	
+	public Usuario update(Long id, Usuario obj) {
+//	==> prepara um objeto monitorado para dps vc realizar uma opercao com o banco de dados
+		Usuario entity = repository.getOne(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+		
+	}
+//  ==> passando os objetos que serao atualizados
+	private void updateData(Usuario entity, Usuario obj) {
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
+		entity.setphone(obj.getphone());
+	}
 }
