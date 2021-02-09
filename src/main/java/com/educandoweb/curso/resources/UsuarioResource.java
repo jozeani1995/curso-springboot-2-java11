@@ -1,19 +1,23 @@
 package com.educandoweb.curso.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.educandoweb.curso.entities.Usuario;
 import com.educandoweb.curso.services.UsuarioService;
 
 @RestController
-@RequestMapping(value = "/usuarios")
+@RequestMapping(value = "/usuario")
 // caminho do recurso
 public class UsuarioResource {
 
@@ -36,7 +40,16 @@ public class UsuarioResource {
 //	para eu conseguir que o spring aceite uma url na requisicao usamos o pathvariable
 		Usuario obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
-
 	}
-
+	
+// end point para inserir um usuario
+   @PostMapping
+   public ResponseEntity<Usuario> insert(@RequestBody Usuario obj){
+//==>	chamar o service para executar a opercao de insert que acabei de fazer   
+	  obj = service.insert(obj); 
+//	  ==> para retornar o metodo created 201
+	  URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+	  return ResponseEntity.created(uri).body(obj); 
+   }
+   
 }

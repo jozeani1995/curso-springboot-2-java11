@@ -1,6 +1,10 @@
 package com.educandoweb.curso.entities.dto;
 
+import java.util.HashSet;
 import java.util.Set;
+
+import com.educandoweb.curso.entities.Order;
+import com.educandoweb.curso.entities.OrderItem;
 
 public class ProdutoDTO {
 
@@ -73,6 +77,5 @@ public class ProdutoDTO {
 	public void setCategorias(Set<CategoryDTO> categorias) {
 		this.categorias = categorias;
 	}
-	
 	
 }

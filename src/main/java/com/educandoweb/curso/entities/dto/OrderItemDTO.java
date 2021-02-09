@@ -41,6 +41,10 @@ public class OrderItemDTO {
 	public void setProduto(List<ProdutoDTO> items) {
 		this.produto = items;
 	}
+
+	public Double getsubTotal() { 
+		return preco * quantidade;
+	}
 	
 	
 }

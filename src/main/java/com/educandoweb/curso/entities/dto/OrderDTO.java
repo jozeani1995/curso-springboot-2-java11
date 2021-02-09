@@ -3,6 +3,8 @@ package com.educandoweb.curso.entities.dto;
 import java.time.Instant;
 import java.util.List;
 
+import com.educandoweb.curso.entities.OrderItem;
+
 public class OrderDTO {
 
 	private Long id;
@@ -62,6 +64,12 @@ public class OrderDTO {
 	public void setItems(List<OrderItemDTO> items) {
 		this.items = items;
 	}
-	
-	
+	 public Double getTotal() {
+		 double sum = 0.0;
+		 for (OrderItemDTO x : items) {
+			 sum += x.getsubTotal();
+		 }
+		 return sum;
 }
+	 }
+	 
