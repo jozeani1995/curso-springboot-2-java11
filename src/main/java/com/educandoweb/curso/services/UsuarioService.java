@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.educandoweb.curso.entities.Usuario;
 import com.educandoweb.curso.repositories.UsuarioRepository;
+import com.educandoweb.curso.services.exceptions.ResourceNotFoundExceptions;
 
 @Service
 //registrar sua classe como componente do spring/ @component,@service,@repository
@@ -26,8 +27,8 @@ public class UsuarioService {
 
 	public Usuario buscarPorId(Long id) {
 		Optional<Usuario> obj = repository.findById(id);
-		return obj.get();
-//  o get do optional vai retornar o objeto do tipo usuario que estiver dentro do optional
+		return obj.orElseThrow(() -> new ResourceNotFoundExceptions(id));
+//  o .get do optional vai retornar o objeto do tipo usuario que estiver dentro do optional(ecessao 500)
 	}
 	
 //	==> inserir um usuario no banco de dados / resource
@@ -43,7 +44,7 @@ public class UsuarioService {
 	
 	public Usuario update(Long id, Usuario obj) {
 //	==> prepara um objeto monitorado para dps vc realizar uma opercao com o banco de dados
-		Usuario entity = repository.getOne(id);
+		Usuario entity = repository.findById(id).get();
 		updateData(entity, obj);
 		return repository.save(entity);
 		
